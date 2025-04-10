@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка изображения</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Загрузите изображение</h1>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept=".jpg,.jpeg,.png" required>
+        <button type="submit">Загрузить</button>
+    </form>
+
+    
+    <div id="previewContainer" style="display: none;">
+        <h3>Превью:</h3>
+        <img id="previewImage" src="#" alt="Превью изображения" style="max-width: 300px; max-height: 300px;">
+    </div>
+
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
